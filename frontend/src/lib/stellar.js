@@ -327,3 +327,57 @@ export function getConfig() {
 export function getRpc() {
   return rpc;
 }
+
+// ── Event Listening: getEvents() for real-time state sync ──────────
+
+/**
+ * Fetches recent contribution events from the Soroban RPC.
+ * Filters events by contract ID and the "contribution" topic.
+ * Returns the latest ledger number processed and the contribution data.
+ */
+export async function getContributionEvents(startLedger = null) {
+  try {
+    const filters = [
+      {
+        type: 'contract',
+        contractIds: [CONFIG.contractId],
+        topics: [['*', '*']], // Match all topics from this contract
+      },
+    ];
+
+    const params = {
+      startLedger: startLedger || undefined,
+      filters,
+      limit: 20,
+    };
+
+    const response = await rpc.getEvents(params);
+
+    if (!response || !response.events) {
+      return { events: [], latestLedger: startLedger };
+    }
+
+    // Filter for contribution events specifically
+    const contributionEvents = response.events
+      .filter((evt) => {
+        // Check if the first topic is "contribution"
+        const topics = evt.topic || [];
+        return topics.length >= 1 && topics[0] === 'contribution';
+      })
+      .map((evt) => ({
+        contributor: evt.topic?.[1] || null,
+        amount: evt.topic?.[2] || null,
+        ledger: evt.ledger,
+        txHash: evt.txHash,
+      }));
+
+    return {
+      events: contributionEvents,
+      latestLedger: response.latestLedger || startLedger,
+    };
+  } catch (err) {
+    // Silently fail for event polling — don't disrupt the UI
+    console.warn('getContributionEvents failed:', err.message);
+    return { events: [], latestLedger: startLedger };
+  }
+}

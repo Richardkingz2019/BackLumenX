@@ -1,5 +1,7 @@
 #![no_std]
-use soroban_sdk::{contract, contractimpl, contracttype, symbol_short, Address, Env, String};
+use soroban_sdk::{
+    contract, contractimpl, contracttype, symbol_short, token, Address, Env, String,
+};
 
 /// Represents the campaign's configuration and current state.
 #[contracttype]
@@ -17,13 +19,6 @@ pub struct CampaignInfo {
     pub raised: i128,
     /// Unix timestamp after which contributions are rejected
     pub deadline: u64,
-}
-
-/// Tracks whether funds have been withdrawn.
-#[contracttype]
-#[derive(Clone, Debug)]
-pub struct WithdrawalState {
-    pub withdrawn: bool,
 }
 
 /// Storage keys for the contract's persistent state.
@@ -77,6 +72,10 @@ impl BackLumenX {
 
     /// Accepts a pledge from `contributor` for `amount` stroops.
     ///
+    /// Transfers XLM from the contributor to this contract via the
+    /// Stellar Asset Contract for native XLM. Requires the contributor
+    /// to authorize both the contract call and the token transfer.
+    ///
     /// Rejects if:
     /// - The campaign deadline has passed.
     /// - The amount is zero or negative.
@@ -96,7 +95,26 @@ impl BackLumenX {
 
         // Check deadline
         let now = env.ledger().timestamp();
-        assert!(now < info.deadline, "This campaign has ended and is no longer accepting pledges.");
+        assert!(
+            now < info.deadline,
+            "This campaign has ended and is no longer accepting pledges."
+        );
+
+        // ── Transfer XLM from contributor to this contract ────────
+        // Use the native Stellar Asset Contract (SAC) to move XLM on-chain.
+        // The SAC address for native XLM on all networks:
+        // CDLZFC3SYJYDZT7K67VZ75HPJVIEUVNIXF47ZG2FB2RMQQVU2HHGCYSC
+        let sac_address = Address::from_string(
+            &env,
+            &String::from_str(
+                &env,
+                "CDLZFC3SYJYDZT7K67VZ75HPJVIEUVNIXF47ZG2FB2RMQQVU2HHGCYSC",
+            ),
+        );
+        let native_token = token::Client::new(&env, &sac_address);
+        let contract_address = env.current_contract_address();
+        // Transfer XLM from contributor to this contract
+        native_token.transfer(&contributor, &contract_address, &amount);
 
         // Update contributor's total
         let contrib_key = DataKey::Contributor(contributor.clone());
@@ -138,6 +156,9 @@ impl BackLumenX {
     /// Allows the beneficiary to withdraw after the deadline passes
     /// OR after the funding goal is met. Restricted to beneficiary address.
     /// Can only be called once — sets a withdrawn flag to prevent re-entry.
+    ///
+    /// Transfers the total raised XLM from this contract to the beneficiary
+    /// via the Stellar Asset Contract for native XLM.
     pub fn withdraw(env: Env) {
         let info: CampaignInfo = env
             .storage()
@@ -161,6 +182,27 @@ impl BackLumenX {
             .get(&DataKey::Withdrawn)
             .unwrap_or(false);
         assert!(!already_withdrawn, "Funds have already been withdrawn");
+
+        // ── Transfer XLM from this contract to the beneficiary ────
+        let raised = info.raised;
+        let beneficiary = info.beneficiary.clone();
+
+        let sac_address = Address::from_string(
+            &env,
+            &String::from_str(
+                &env,
+                "CDLZFC3SYJYDZT7K67VZ75HPJVIEUVNIXF47ZG2FB2RMQQVU2HHGCYSC",
+            ),
+        );
+        let native_token = token::Client::new(&env, &sac_address);
+        let contract_address = env.current_contract_address();
+
+        // Transfer XLM from this contract to the beneficiary.
+        // No explicit authorization needed — the protocol recognizes
+        // the contract as the source of the call.
+        if raised > 0 {
+            native_token.transfer(&contract_address, &beneficiary, &raised);
+        }
 
         // Mark as withdrawn
         env.storage()

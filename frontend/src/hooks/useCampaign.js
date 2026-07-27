@@ -4,6 +4,7 @@ import {
   simulateCampaignInfo,
   fullContributeFlow,
   getBalance,
+  getContributionEvents,
 } from '../lib/stellar';
 
 /**
@@ -69,10 +70,32 @@ export function useCampaign(publicKey, selectedWallet) {
       refreshCampaign();
       refreshBalance();
 
-      // Poll every 8 seconds for live updates from other backers
-      pollingRef.current = setInterval(() => {
+      // Poll every 8 seconds for live updates from other backers.
+      // Uses Soroban getEvents() for fast event detection, with
+      // an unconditional periodic refresh as a fallback.
+      let lastEventLedger = null;
+      let refreshTickCount = 0;
+      pollingRef.current = setInterval(async () => {
         // Skip polling during active contributions to avoid races
-        if (!isContributingRef.current) {
+        if (isContributingRef.current) return;
+
+        refreshTickCount++;
+
+        // Always refresh every 3rd tick (24s) to guarantee state sync
+        const forceRefresh = refreshTickCount % 3 === 0;
+
+        try {
+          const { events, latestLedger } = await getContributionEvents(
+            lastEventLedger
+          );
+          if (events.length > 0 || !lastEventLedger || forceRefresh) {
+            // New events detected, first poll, or periodic refresh
+            await refreshCampaign();
+            await refreshBalance();
+          }
+          if (latestLedger) lastEventLedger = latestLedger;
+        } catch {
+          // Fall back to standard refresh on event polling failure
           refreshCampaign();
           refreshBalance();
         }
@@ -113,7 +136,17 @@ export function useCampaign(publicKey, selectedWallet) {
         // Build signing function based on selected wallet type
         const signFn = async (xdr) => {
           try {
-            // Use Freighter API for signing (primary wallet)
+            if (selectedWallet === 'albedo' && window.albedo) {
+              // Albedo wallet signing
+              const result = await window.albedo.signTransaction(xdr);
+              return result.signed_envelope_xdr || result.xdr;
+            }
+            if (selectedWallet === 'xbull' && window.xBullSDK) {
+              // xBull wallet signing
+              const result = await window.xBullSDK.signTransaction(xdr);
+              return result.signed_envelope_xdr || result.xdr;
+            }
+            // Default: Freighter wallet signing (also handles 'freighter' explicitly)
             const signedXdr = await freighterSign(xdr, {
               network: 'TESTNET',
             });

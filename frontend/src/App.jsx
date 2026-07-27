@@ -43,7 +43,10 @@ function App() {
       const result = await StellarWalletsKit.getAddress();
       if (result?.address) {
         setAddress(result.address);
-        setSelectedWallet('freighter');
+        // Detect wallet type from the connection result
+        // StellarWalletsKit returns the wallet id/type used for connection
+        const walletType = result.walletType || result.wallet || 'freighter';
+        setSelectedWallet(walletType);
       }
     } catch (err) {
       console.error('Wallet connection failed:', err);
