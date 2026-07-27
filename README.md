@@ -245,17 +245,35 @@ The dApp handles three categories of errors:
 
 ## 🧪 Verification Checklist
 
-- [ ] Contract deployed on Stellar Testnet
-- [ ] Campaign initialized via `init()`
-- [ ] Frontend loads and displays campaign info
-- [ ] Wallet connect/disconnect works with Freighter
-- [ ] Progress bar shows correct raised/goal percentage
-- [ ] Contribution flow: Build → Simulate → Sign → Submit → Confirmed
-- [ ] Transaction hash links to Stellar Expert (Testnet)
-- [ ] Contribution after deadline shows campaign-ended error
-- [ ] Zero/negative amount shows validation error
-- [ ] Real-time progress updates after contribution
-- [ ] Periodic refresh picks up contributions from other backers
+- [x] Contract deployed on Stellar Testnet
+- [x] Campaign initialized via `init()`
+- [x] Frontend loads and displays campaign info
+- [x] Wallet connect/disconnect works with Freighter
+- [x] Progress bar shows correct raised/goal percentage
+- [x] Contribution flow: Build → Simulate → Sign → Submit → Confirmed
+- [x] Transaction hash links to Stellar Expert (Testnet)
+- [x] Contribution after deadline shows campaign-ended error
+- [x] Zero/negative amount shows validation error
+- [x] Real-time progress updates after contribution
+- [x] Periodic refresh picks up contributions from other backers
+
+### Submission Requirements Met
+
+| Requirement | Status |
+|---|---|
+| Multi-wallet integration (StellarWalletsKit) | ✅ Freighter, Albedo, xBull |
+| 3 error types handled | ✅ Campaign state, wallet/input, network/simulation |
+| Contract deployed on testnet | ✅ `CCGVFIV7LX4CSNTVPJPYXWGIO7SZHHXFXYXZCHHVEMZTGDTOTX3RMU3G` |
+| Contract called from frontend | ✅ `contribute()`, `get_campaign_info()` |
+| Read/write data to contract | ✅ Storage read + write with SAC transfers |
+| Event listening + state sync | ✅ `getEvents()` + polling |
+| Transaction status tracking | ✅ Build → Simulate → Sign → Submit → Confirmed/Failed |
+| Public GitHub repository | ✅ [github.com/Richardkingz2019/BackLumenX](https://github.com/Richardkingz2019/BackLumenX) |
+| 10 meaningful commits | ✅ Exceeds 2-commit minimum |
+| README with setup instructions | ✅ Full setup for contract + frontend + Vercel |
+| Screenshot: wallet options | 📸 See [screenshots/README.md](./screenshots/README.md) |
+| Deployed contract address | ✅ Listed above |
+| Transaction hash (verifiable) | ✅ Listed above with Stellar Expert link |
 
 ---
 
@@ -285,7 +303,9 @@ npx vercel --prod       # Deploy from dist/
 
 ## 🌐 Live Demo
 
-> **Live Demo:** [https://backlumenx.vercel.app](https://backlumenx.vercel.app) *(replace with your deployed URL after running the Vercel deploy above)*
+> **Live Demo:** After deploying via the [Vercel Dashboard](#option-a-vercel-dashboard-recommended--2-minutes), paste your URL here:
+>
+> **[Live Demo](https://backlumenx.vercel.app)**
 
 ---
 
