@@ -1,0 +1,154 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 600" width="800" height="600">
+  <defs>
+    <linearGradient id="progressGrad" x1="0" y1="0" x2="1" y2="0">
+      <stop offset="0%" stop-color="#6c5ce7"/>
+      <stop offset="50%" stop-color="#a29bfe"/>
+      <stop offset="100%" stop-color="#00d68f"/>
+    </linearGradient>
+    <filter id="glow">
+      <feDropShadow dx="0" dy="0" stdDeviation="6" flood-color="#00d68f" flood-opacity="0.6"/>
+    </filter>
+  </defs>
+
+  <!-- Background -->
+  <rect width="800" height="600" fill="#0a0a0f"/>
+
+  <!-- Header bar -->
+  <rect x="0" y="0" width="800" height="56" fill="#12121a"/>
+  <line x1="0" y1="56" x2="800" y2="56" stroke="#2a2a3a" stroke-width="1"/>
+
+  <!-- Logo -->
+  <text x="40" y="37" font-family="Inter, sans-serif" font-size="20" font-weight="700" fill="#e8e8f0">
+    ⬡ BackLumenX
+  </text>
+
+  <!-- Connected wallet badge -->
+  <rect x="555" y="10" width="205" height="36" rx="12" fill="#1a1a26" stroke="#2a2a3a" stroke-width="1"/>
+  <circle cx="577" cy="28" r="4" fill="#00d68f" filter="url(#glow)"/>
+  <text x="586" y="33" font-family="SF Mono, monospace" font-size="13" font-weight="600" fill="#e8e8f0">
+    GDCMH3...GMEW
+  </text>
+  <text x="702" y="33" font-family="Inter, sans-serif" font-size="12" fill="#8888a0">
+    9,995 XLM
+  </text>
+
+  <!-- Campaign Display Card -->
+  <rect x="40" y="80" width="720" height="90" rx="16" fill="#1a1a26" stroke="#2a2a3a" stroke-width="1"/>
+
+  <rect x="60" y="100" width="70" height="20" rx="10" fill="rgba(0,214,143,0.1)"/>
+  <text x="95" y="114" font-family="Inter, sans-serif" font-size="11" font-weight="700" fill="#00d68f" text-anchor="middle">
+    Active
+  </text>
+
+  <text x="60" y="149" font-family="Inter, sans-serif" font-size="22" font-weight="700" fill="#e8e8f0">
+    BackLumenX Crowdfund
+  </text>
+  <text x="60" y="170" font-family="Inter, sans-serif" font-size="10" fill="#5a5a72">
+    Contract: CCGVFIV7LX4CSNTVPJPYXWGIO7SZHHXFXYXZCHHVEMZTGDTOTX3RMU3G
+  </text>
+
+  <!-- Progress Section -->
+  <rect x="40" y="188" width="720" height="120" rx="16" fill="#1a1a26" stroke="#2a2a3a" stroke-width="1"/>
+
+  <!-- Raised stat -->
+  <text x="60" y="218" font-family="Inter, sans-serif" font-size="28" font-weight="800" fill="#e8e8f0">
+    5 XLM
+  </text>
+  <text x="60" y="240" font-family="Inter, sans-serif" font-size="13" fill="#8888a0">
+    raised of 1,000 XLM goal
+  </text>
+
+  <!-- Percentage stat -->
+  <text x="740" y="218" font-family="Inter, sans-serif" font-size="28" font-weight="800" fill="#e8e8f0" text-anchor="end">
+    0.5%
+  </text>
+  <text x="740" y="240" font-family="Inter, sans-serif" font-size="13" fill="#8888a0" text-anchor="end">
+    funded
+  </text>
+
+  <!-- Progress bar track -->
+  <rect x="60" y="260" width="680" height="12" rx="6" fill="#12121a"/>
+
+  <!-- Progress bar fill (0.5%) -->
+  <rect x="60" y="260" width="3.4" height="12" rx="6" fill="url(#progressGrad)"/>
+
+  <!-- Deadline -->
+  <text x="60" y="296" font-family="Inter, sans-serif" font-size="12" fill="#5a5a72">
+    Campaign ends May 17, 2033
+  </text>
+
+  <!-- Contribute Form -->
+  <rect x="40" y="326" width="720" height="130" rx="16" fill="#1a1a26" stroke="#2a2a3a" stroke-width="1"/>
+
+  <text x="60" y="356" font-family="Inter, sans-serif" font-size="16" font-weight="700" fill="#e8e8f0">
+    Back this project
+  </text>
+
+  <!-- Amount input field -->
+  <rect x="60" y="372" width="480" height="48" rx="12" fill="#12121a" stroke="#2a2a3a" stroke-width="2"/>
+  <text x="78" y="401" font-family="Inter, sans-serif" font-size="18" font-weight="600" fill="#e8e8f0">
+    10
+  </text>
+  <text x="520" y="401" font-family="Inter, sans-serif" font-size="14" font-weight="700" fill="#8888a0">
+    XLM
+  </text>
+
+  <!-- Contribute button -->
+  <rect x="555" y="372" width="185" height="48" rx="12" fill="#6c5ce7"/>
+  <text x="647" y="401" font-family="Inter, sans-serif" font-size="14" font-weight="600" fill="#fff" text-anchor="middle">
+    Back this project
+  </text>
+
+  <!-- Balance hint -->
+  <text x="60" y="442" font-family="Inter, sans-serif" font-size="12" fill="#5a5a72">
+    Balance: 9,995 XLM
+  </text>
+
+  <!-- Transaction Status (Confirmed) -->
+  <rect x="40" y="474" width="720" height="106" rx="16" fill="rgba(0,214,143,0.1)" stroke="#00d68f" stroke-width="1"/>
+
+  <text x="60" y="500" font-family="Inter, sans-serif" font-size="14" font-weight="700" fill="#00d68f">
+    ✅ Transaction Confirmed
+  </text>
+
+  <!-- Pipeline steps -->
+  <rect x="60" y="514" width="95" height="28" rx="8" fill="rgba(0,214,143,0.15)" stroke="#00d68f" stroke-width="1"/>
+  <text x="107" y="533" font-family="Inter, sans-serif" font-size="11" font-weight="600" fill="#00d68f" text-anchor="middle">
+    ✅ Build
+  </text>
+
+  <rect x="163" y="514" width="110" height="28" rx="8" fill="rgba(0,214,143,0.15)" stroke="#00d68f" stroke-width="1"/>
+  <text x="218" y="533" font-family="Inter, sans-serif" font-size="11" font-weight="600" fill="#00d68f" text-anchor="middle">
+    ✅ Simulate
+  </text>
+
+  <rect x="281" y="514" width="95" height="28" rx="8" fill="rgba(0,214,143,0.15)" stroke="#00d68f" stroke-width="1"/>
+  <text x="328" y="533" font-family="Inter, sans-serif" font-size="11" font-weight="600" fill="#00d68f" text-anchor="middle">
+    ✅ Sign
+  </text>
+
+  <rect x="384" y="514" width="105" height="28" rx="8" fill="rgba(0,214,143,0.15)" stroke="#00d68f" stroke-width="1"/>
+  <text x="436" y="533" font-family="Inter, sans-serif" font-size="11" font-weight="600" fill="#00d68f" text-anchor="middle">
+    ✅ Submit
+  </text>
+
+  <rect x="497" y="514" width="125" height="28" rx="8" fill="rgba(0,214,143,0.15)" stroke="#00d68f" stroke-width="1"/>
+  <text x="559" y="533" font-family="Inter, sans-serif" font-size="11" font-weight="600" fill="#00d68f" text-anchor="middle">
+    ✅ Confirmed
+  </text>
+
+  <!-- Stellar Expert link -->
+  <text x="650" y="533" font-family="Inter, sans-serif" font-size="12" font-weight="600" fill="#6c5ce7">
+    ↗ View on Stellar Expert
+  </text>
+
+  <!-- Tx hash -->
+  <text x="60" y="568" font-family="SF Mono, monospace" font-size="10" fill="#5a5a72">
+    964cefe9...2e5717
+  </text>
+
+  <!-- Footer -->
+  <text x="400" y="594" font-family="Inter, sans-serif" font-size="11" fill="#5a5a72" text-anchor="middle">
+    Built with Stellar Soroban  ·  Testnet  ·  View on GitHub
+  </text>
+</svg>

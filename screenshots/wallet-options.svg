@@ -1,0 +1,104 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 500" width="800" height="500">
+  <defs>
+    <linearGradient id="heroGrad" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#e8e8f0"/>
+      <stop offset="100%" stop-color="#7d6ff0"/>
+    </linearGradient>
+    <filter id="glow">
+      <feDropShadow dx="0" dy="0" stdDeviation="8" flood-color="#6c5ce7" flood-opacity="0.4"/>
+    </filter>
+    <filter id="cardShadow">
+      <feDropShadow dx="0" dy="4" stdDeviation="16" flood-color="#000" flood-opacity="0.5"/>
+    </filter>
+    <linearGradient id="progressGrad" x1="0" y1="0" x2="1" y2="0">
+      <stop offset="0%" stop-color="#6c5ce7"/>
+      <stop offset="50%" stop-color="#a29bfe"/>
+      <stop offset="100%" stop-color="#00d68f"/>
+    </linearGradient>
+  </defs>
+
+  <!-- Background -->
+  <rect width="800" height="500" fill="#0a0a0f"/>
+
+  <!-- Header bar -->
+  <rect x="0" y="0" width="800" height="56" fill="#12121a"/>
+  <line x1="0" y1="56" x2="800" y2="56" stroke="#2a2a3a" stroke-width="1"/>
+
+  <!-- Logo -->
+  <text x="40" y="37" font-family="Inter, sans-serif" font-size="20" font-weight="700" fill="#e8e8f0">
+    ⬡ BackLumenX
+  </text>
+
+  <!-- Connect button in header -->
+  <rect x="560" y="12" width="200" height="32" rx="8" fill="#6c5ce7"/>
+  <text x="660" y="33" font-family="Inter, sans-serif" font-size="13" font-weight="600" fill="#fff" text-anchor="middle">
+    Connect Wallet to Get Started
+  </text>
+
+  <!-- Hero section -->
+  <text x="400" y="175" font-family="Inter, sans-serif" font-size="32" font-weight="800" fill="url(#heroGrad)" text-anchor="middle">
+    Welcome to BackLumenX
+  </text>
+  <text x="400" y="210" font-family="Inter, sans-serif" font-size="15" fill="#8888a0" text-anchor="middle">
+    Crowdfunding powered by Stellar Soroban smart contracts.
+  </text>
+  <text x="400" y="232" font-family="Inter, sans-serif" font-size="15" fill="#8888a0" text-anchor="middle">
+    Connect your wallet to view and back campaigns.
+  </text>
+
+  <!-- CTA button -->
+  <rect x="300" y="268" width="200" height="44" rx="12" fill="#6c5ce7" filter="url(#glow)"/>
+  <text x="400" y="296" font-family="Inter, sans-serif" font-size="15" font-weight="600" fill="#fff" text-anchor="middle">
+    Connect Wallet to Get Started
+  </text>
+
+  <!-- Modal overlay -->
+  <rect x="0" y="0" width="800" height="500" fill="#000" opacity="0.6"/>
+
+  <!-- Modal card -->
+  <rect x="250" y="90" width="300" height="340" rx="16" fill="#1a1a26" stroke="#2a2a3a" stroke-width="1" filter="url(#cardShadow)"/>
+
+  <!-- Modal header -->
+  <text x="400" y="130" font-family="Inter, sans-serif" font-size="16" font-weight="700" fill="#e8e8f0" text-anchor="middle">
+    Connect a Wallet
+  </text>
+  <text x="400" y="152" font-family="Inter, sans-serif" font-size="12" fill="#8888a0" text-anchor="middle">
+    Choose your preferred Stellar wallet
+  </text>
+
+  <!-- Wallet Option 1: Freighter -->
+  <rect x="270" y="172" width="260" height="44" rx="10" fill="#222233" stroke="#2a2a3a" stroke-width="1"/>
+  <rect x="280" y="182" width="24" height="24" rx="6" fill="#6c5ce7"/>
+  <text x="292" y="199" font-family="Inter, sans-serif" font-size="11" fill="#fff" text-anchor="middle" font-weight="700">F</text>
+  <text x="314" y="199" font-family="Inter, sans-serif" font-size="14" font-weight="600" fill="#e8e8f0">Freighter</text>
+  <text x="505" y="199" font-family="Inter, sans-serif" font-size="11" fill="#00d68f" text-anchor="end">Installed</text>
+
+  <!-- Wallet Option 2: Albedo -->
+  <rect x="270" y="226" width="260" height="44" rx="10" fill="#1a1a26" stroke="#2a2a3a" stroke-width="1"/>
+  <rect x="280" y="236" width="24" height="24" rx="6" fill="#a29bfe"/>
+  <text x="292" y="253" font-family="Inter, sans-serif" font-size="11" fill="#fff" text-anchor="middle" font-weight="700">A</text>
+  <text x="314" y="253" font-family="Inter, sans-serif" font-size="14" font-weight="600" fill="#e8e8f0">Albedo</text>
+
+  <!-- Wallet Option 3: xBull -->
+  <rect x="270" y="280" width="260" height="44" rx="10" fill="#1a1a26" stroke="#2a2a3a" stroke-width="1"/>
+  <rect x="280" y="290" width="24" height="24" rx="6" fill="#ffa502"/>
+  <text x="292" y="307" font-family="Inter, sans-serif" font-size="10" fill="#fff" text-anchor="middle" font-weight="700">X</text>
+  <text x="314" y="307" font-family="Inter, sans-serif" font-size="14" font-weight="600" fill="#e8e8f0">xBull</text>
+
+  <!-- Wallet Option 4: WalletConnect -->
+  <rect x="270" y="334" width="260" height="44" rx="10" fill="#1a1a26" stroke="#2a2a3a" stroke-width="1"/>
+  <rect x="280" y="344" width="24" height="24" rx="6" fill="#00d68f"/>
+  <text x="292" y="361" font-family="Inter, sans-serif" font-size="11" fill="#fff" text-anchor="middle" font-weight="700">W</text>
+  <text x="314" y="361" font-family="Inter, sans-serif" font-size="14" font-weight="600" fill="#e8e8f0">WalletConnect</text>
+
+  <!-- Divider above WalletConnect -->
+  <line x1="270" y1="396" x2="530" y2="396" stroke="#2a2a3a" stroke-width="1"/>
+  <text x="400" y="410" font-family="Inter, sans-serif" font-size="10" fill="#5a5a72" text-anchor="middle">
+    More wallet options available
+  </text>
+
+  <!-- Footer -->
+  <text x="400" y="490" font-family="Inter, sans-serif" font-size="11" fill="#5a5a72" text-anchor="middle">
+    Built with Stellar Soroban  ·  Testnet
+  </text>
+</svg>

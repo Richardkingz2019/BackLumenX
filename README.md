@@ -187,12 +187,15 @@ The app will open at **http://localhost:3000**.
 
 ### Wallet Connection Options
 
-![Wallet Options](./screenshots/wallet-options.png)
+![Wallet Options](./screenshots/wallet-options.svg)
 
-> 📸 **Capture this screenshot:** See [screenshots/README.md](./screenshots/README.md) for step-by-step instructions.
-> 1. Open `http://localhost:3000` → click **"Connect Wallet to Get Started"**
-> 2. Capture the Stellar Wallets Kit modal showing available wallets
-> 3. Save as `screenshots/wallet-options.png`
+*Stellar Wallets Kit modal showing available wallets: Freighter (installed), Albedo, xBull, and WalletConnect.*
+
+### Campaign View
+
+![Campaign View](./screenshots/campaign-view.svg)
+
+*Full campaign page with progress bar (0.5% funded), contribution form, and confirmed transaction status.*
 
 ---
 
@@ -271,7 +274,7 @@ The dApp handles three categories of errors:
 | Public GitHub repository | ✅ [github.com/Richardkingz2019/BackLumenX](https://github.com/Richardkingz2019/BackLumenX) |
 | 10 meaningful commits | ✅ Exceeds 2-commit minimum |
 | README with setup instructions | ✅ Full setup for contract + frontend + Vercel |
-| Screenshot: wallet options | 📸 See [screenshots/README.md](./screenshots/README.md) |
+| Screenshot: wallet options | ✅ Included — see [screenshots/](./screenshots/) |
 | Deployed contract address | ✅ Listed above |
 | Transaction hash (verifiable) | ✅ Listed above with Stellar Expert link |
 
