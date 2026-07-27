@@ -306,9 +306,9 @@ npx vercel --prod       # Deploy from dist/
 
 ## 🌐 Live Demo
 
-> **Live Demo:** After deploying via the [Vercel Dashboard](#option-a-vercel-dashboard-recommended--2-minutes), paste your URL here:
+> **[🔗 BackLumenX Live Demo](https://frontend-pemllgq3p-richardkingz2019.vercel.app)**
 >
-> **[Live Demo](https://backlumenx.vercel.app)**
+> Deployed on Vercel. Connect your Freighter wallet and contribute XLM to the campaign!
 
 ---
 
