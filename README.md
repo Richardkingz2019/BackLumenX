@@ -259,11 +259,33 @@ The dApp handles three categories of errors:
 
 ---
 
-## 🌐 Live Demo (Optional)
+## 🚀 Deploy Frontend to Vercel
 
-> Deploy to Vercel or Netlify and paste your URL here:
->
-> **[Live Demo](https://backlumenx.vercel.app)**
+### Option A: Vercel Dashboard (Recommended — 2 minutes)
+
+1. Go to [vercel.com](https://vercel.com) and log in with GitHub
+2. Click **"Add New Project"** → import `Richardkingz2019/BackLumenX`
+3. Set **Root Directory** to `frontend`
+4. Add environment variables:
+   - `VITE_CONTRACT_ID` = `CCGVFIV7LX4CSNTVPJPYXWGIO7SZHHXFXYXZCHHVEMZTGDTOTX3RMU3G`
+   - `VITE_SOROBAN_RPC_URL` = `https://soroban-testnet.stellar.org`
+   - `VITE_HORIZON_URL` = `https://horizon-testnet.stellar.org`
+   - `VITE_NETWORK_PASSPHRASE` = `Test SDF Network ; September 2015`
+5. Click **Deploy** — Vercel auto-detects Vite and builds automatically
+
+### Option B: Vercel CLI
+
+```bash
+cd frontend
+npx vercel login        # One-time auth (opens browser)
+npx vercel --prod       # Deploy from dist/
+```
+
+---
+
+## 🌐 Live Demo
+
+> **Live Demo:** [https://backlumenx.vercel.app](https://backlumenx.vercel.app) *(replace with your deployed URL after running the Vercel deploy above)*
 
 ---
 
