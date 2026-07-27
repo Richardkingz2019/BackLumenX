@@ -105,7 +105,6 @@ impl BackLumenX {
         // The SAC address for native XLM on all networks:
         // CDLZFC3SYJYDZT7K67VZ75HPJVIEUVNIXF47ZG2FB2RMQQVU2HHGCYSC
         let sac_address = Address::from_string(
-            &env,
             &String::from_str(
                 &env,
                 "CDLZFC3SYJYDZT7K67VZ75HPJVIEUVNIXF47ZG2FB2RMQQVU2HHGCYSC",
@@ -130,7 +129,7 @@ impl BackLumenX {
         // Emit event for real-time listeners
         env.events()
             .publish(
-                (symbol_short!("contribution"),),
+                (symbol_short!("contrib"),),
                 (contributor, amount),
             );
     }
@@ -188,7 +187,6 @@ impl BackLumenX {
         let beneficiary = info.beneficiary.clone();
 
         let sac_address = Address::from_string(
-            &env,
             &String::from_str(
                 &env,
                 "CDLZFC3SYJYDZT7K67VZ75HPJVIEUVNIXF47ZG2FB2RMQQVU2HHGCYSC",

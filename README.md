@@ -64,9 +64,9 @@ BackLumenX/
    rustup target add wasm32-unknown-unknown
    ```
 
-2. **Soroban CLI** — [Install Soroban CLI](https://soroban.stellar.org/docs/getting-started/setup)
+2. **Stellar CLI** — [Install Stellar CLI](https://github.com/stellar/stellar-cli)
    ```bash
-   cargo install soroban-cli
+   curl -fsSL https://github.com/stellar/stellar-cli/raw/main/install.sh | sh
    ```
 
 3. **Node.js 18+** — [Install Node.js](https://nodejs.org/)
@@ -86,8 +86,9 @@ BackLumenX/
 
 ```bash
 # From the project root
-./deploy.sh SXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX \
-  GCZ55HR4B... "Save the Ocean" "Help us clean up the Pacific Ocean." 10000000000 1800000000
+chmod +x deploy.sh
+./deploy.sh SCG2S7PSVOQH5CDIG26YMVS2SILT774T3Z3FNFKXCMQ2MPXXWLKQLKNB \
+  GDCMH3J5KXQFPVIDVITSAQG3LHSFJBM6R4I4UXMSFN2BI4NUMMLMGMEW "BackLumenX Crowdfund" "A decentralized crowdfunding campaign powered by Stellar Soroban smart contracts." 10000000000 2000000000
 ```
 
 > Replace `S...` with your testnet account's secret key and `GCZ...` with the beneficiary address.
@@ -97,20 +98,20 @@ BackLumenX/
 ```bash
 # Build the contract
 cd contract
-cargo build --target wasm32-unknown-unknown --release
+stellar contract build
 
 # Deploy to testnet
-soroban contract deploy \
-  --wasm target/wasm32-unknown-unknown/release/backlumenx.wasm \
-  --source SXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX \
+stellar contract deploy \
+  --wasm target/wasm32v1-none/release/backlumenx.wasm \
+  --source alice \
   --network testnet
 
-# Save the Contract ID from output (e.g., CB...)
+# Save the Contract ID from output (e.g., CCGVF...)
 
 # Initialize the campaign
-soroban contract invoke \
+stellar contract invoke \
   --id <CONTRACT_ID> \
-  --source SXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX \
+  --source alice \
   --network testnet \
   -- \
   init \
@@ -118,7 +119,7 @@ soroban contract invoke \
   --description "Help us clean up the Pacific Ocean and protect marine wildlife." \
   --beneficiary <BENEFICIARY_ADDRESS> \
   --goal 10000000000 \
-  --deadline 1800000000
+  --deadline 2000000000
 ```
 
 #### Run contract tests
@@ -145,7 +146,7 @@ cp .env.example .env
 The `.env` file should contain:
 
 ```env
-VITE_CONTRACT_ID=CBXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
+VITE_CONTRACT_ID=CCGVFIV7LX4CSNTVPJPYXWGIO7SZHHXFXYXZCHHVEMZTGDTOTX3RMU3G
 VITE_SOROBAN_RPC_URL=https://soroban-testnet.stellar.org
 VITE_HORIZON_URL=https://horizon-testnet.stellar.org
 VITE_NETWORK_PASSPHRASE=Test SDF Network ; September 2015
@@ -188,7 +189,10 @@ The app will open at **http://localhost:3000**.
 
 > 📸 **Add your screenshot here:** Take a screenshot of the Stellar Wallets Kit modal showing available wallets (Freighter, Albedo, xBull, etc.) and replace this section with the image.
 >
+> Ensure the screenshot shows the wallet selection dialog with multiple wallet options visible.
 > Recommended format: `![Wallet Options](./screenshots/wallet-options.png)`
+>
+> **Tip:** Open the frontend at http://localhost:3000, click "Connect Wallet to Get Started", and capture the Stellar Wallets Kit modal that appears.
 
 ---
 
@@ -197,8 +201,8 @@ The app will open at **http://localhost:3000**.
 | Field | Value |
 |---|---|
 | **Network** | Stellar Testnet |
-| **Contract ID** | `CB...` *(replace with your deployed contract ID after running `soroban contract deploy`)* |
-| **Verification** | [View on Stellar Expert](https://stellar.expert/explorer/testnet/contract/CB...) |
+| **Contract ID** | `CCGVFIV7LX4CSNTVPJPYXWGIO7SZHHXFXYXZCHHVEMZTGDTOTX3RMU3G` |
+| **Verification** | [View on Stellar Expert](https://stellar.expert/explorer/testnet/contract/CCGVFIV7LX4CSNTVPJPYXWGIO7SZHHXFXYXZCHHVEMZTGDTOTX3RMU3G) |
 
 ---
 
@@ -206,9 +210,11 @@ The app will open at **http://localhost:3000**.
 
 | Field | Value |
 |---|---|
-| **Function Called** | `contribute(contributor, amount)` |
-| **Transaction Hash** | `...` *(replace after making a live `contribute()` call through the frontend)* |
-| **Verification** | [View on Stellar Expert (Testnet)](https://stellar.expert/explorer/testnet/tx/...) |
+| **Function Called** | `contribute(contributor, amount)` — 5 XLM contribution |
+| **Transaction Hash** | `964cefe934e1e5b3b596790d00cbea9543ca59777ad9a03f827e3577372e5717` |
+| **Verification** | [View on Stellar Expert (Testnet)](https://stellar.expert/explorer/testnet/tx/964cefe934e1e5b3b596790d00cbea9543ca59777ad9a03f827e3577372e5717) |
+
+**Init Transaction Hash:** `a32b0715b9bc6b3f1b58f7ac844bb7ef951300a5d04bc77fbee2cb8c08a34d4c` — [View on Stellar Expert](https://stellar.expert/explorer/testnet/tx/a32b0715b9bc6b3f1b58f7ac844bb7ef951300a5d04bc77fbee2cb8c08a34d4c)
 
 ---
 
@@ -265,7 +271,7 @@ The dApp handles three categories of errors:
 
 | Layer | Technology |
 |---|---|
-| **Smart Contract** | Soroban SDK v21 (Rust) |
+| **Smart Contract** | Soroban SDK v21 (Rust) — stellar-cli v27 |
 | **Frontend** | React 18 + Vite |
 | **Wallet Integration** | Stellar Wallets Kit |
 | **SDK** | @stellar/stellar-sdk v16 |
