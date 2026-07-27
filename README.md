@@ -187,12 +187,12 @@ The app will open at **http://localhost:3000**.
 
 ### Wallet Connection Options
 
-> 📸 **Add your screenshot here:** Take a screenshot of the Stellar Wallets Kit modal showing available wallets (Freighter, Albedo, xBull, etc.) and replace this section with the image.
->
-> Ensure the screenshot shows the wallet selection dialog with multiple wallet options visible.
-> Recommended format: `![Wallet Options](./screenshots/wallet-options.png)`
->
-> **Tip:** Open the frontend at http://localhost:3000, click "Connect Wallet to Get Started", and capture the Stellar Wallets Kit modal that appears.
+![Wallet Options](./screenshots/wallet-options.png)
+
+> 📸 **Capture this screenshot:** See [screenshots/README.md](./screenshots/README.md) for step-by-step instructions.
+> 1. Open `http://localhost:3000` → click **"Connect Wallet to Get Started"**
+> 2. Capture the Stellar Wallets Kit modal showing available wallets
+> 3. Save as `screenshots/wallet-options.png`
 
 ---
 
